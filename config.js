@@ -5,7 +5,7 @@ const path = require('path')
 let config = {
   // Name of electron app
   // Will be used in production builds
-  name: 'train',
+  name: '12306订票助手',
 
   // Use ESLint (extends `airbnb`)
   // Further changes can be made in `.eslintrc.js`

@@ -24,8 +24,8 @@ const actions = {
   // 查询列车
   searchTrain({ commit, dispatch }, query) {
     console.log(query);
-    // dispatch('setMessage', { message: '查询中...' });
-    commit(types.MESSAGE_CHANGE, '查询中...');
+    dispatch('setMessage', { message: '查询中...' });
+    // commit(types.MESSAGE_CHANGE, '查询中...');
     train.getTrainList(query, result => {
       // console.log(result);
       commit(types.SEARCH_TRAIN, { trainList: result.data });
@@ -52,8 +52,8 @@ const actions = {
     });
     // console.log(filterList);
     commit(types.FILTER_TRAIN, { filterList });
-    // dispatch('setMessage', { message: `查找到 ${state.filterList.length} 趟车` });
-    commit(types.MESSAGE_CHANGE, `查找到 ${state.filterList.length} 趟车`);
+    dispatch('setMessage', { message: `查找到 ${state.filterList.length} 趟车` });
+    // commit(types.MESSAGE_CHANGE, `查找到 ${state.filterList.length} 趟车`);
   },
   // 登录
   login({ commit, dispatch }, user) {

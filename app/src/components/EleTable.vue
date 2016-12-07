@@ -109,7 +109,11 @@
     <el-table-column
       label="备注"
       min-width="100"
-      :formatter="formatter">
+      inline-template>
+    <div>
+      <el-button type="primary" v-if="row.buttonTextInfo.trim() == '预订'">预定</el-button>
+      <span v-else>{{ row.buttonTextInfo.trim() }}</span>
+    </div>
     </el-table-column>
   </el-table>
 </template>

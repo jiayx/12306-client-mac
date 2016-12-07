@@ -137,7 +137,7 @@
         </el-row>
       </el-col>
       <el-col :span="4" style="text-align: right;">
-        <el-button @click="login">登录</el-button>
+        <el-button v-show="!isLogin" @click="login">登录</el-button>
         <el-button
         type="primary"
         size="large"
@@ -175,8 +175,6 @@
             <div @click="unchooseCode(index)" v-for="(mark, index) in marks" class="mark" :style="{ top: mark.top + 'px', left: mark.left + 'px' }"></div>
           </div>
         </el-form-item>
-        
-        {{ points }}
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click.native="loginFormVisible = false">取 消</el-button>
@@ -197,14 +195,23 @@
   import { WINDOW_LOGIN } from './const';
   import train from '../api/train';
 
-  const { BrowserWindow } = require('electron').remote;
+  // const { BrowserWindow } = require('electron').remote;
 
   const getDateString = (date) => {
     if (date == '' || date == undefined) {
       date = new Date();
     }
 
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+    let day = date.getDate();
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    return `${date.getFullYear()}-${month}-${day}`;
   };
 
   let windowLogin;
@@ -287,6 +294,7 @@
           password: 'jia18792458926',
           cb: () => {
             self.loginFormVisible = false;
+            self.isLogin = true;
           },
         };
         // console.log(data);
@@ -343,7 +351,7 @@
       startTime: '',
       today: getDateString(),
       trainTypes: ['G', 'D', 'Z', 'T', 'K', 'QT'],
-      seatTypes: [],
+      seatTypes: ['G', 'D', 'Z', 'T', 'K', 'QT'],
       searching: '查询',
 
       marks: [],
