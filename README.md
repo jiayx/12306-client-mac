@@ -1,5 +1,7 @@
 ## 12306-client-mac
 
+已废弃
+
 > mac上的12306客户端
 采用 electron + vue2.0 + element 开发
 尚未完成 进度较慢
